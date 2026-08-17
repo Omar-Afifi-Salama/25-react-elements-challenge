@@ -1,0 +1,97 @@
+@scope (.review-meter-root) {
+    /* 1. Scoped Theme Tokens & Container */
+    :scope {
+        --star-active: #f59e0b; /* Vibrant amber */
+        --star-hover: #fbbf24;
+        --star-empty: #737373; /* Neutral slate/gray stroke */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        font-family: inherit;
+        width: 100%;
+    }
+
+    /* 2. Rating Label Centering */
+    .rating-label {
+        width: 100%;
+        text-align: center;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--text-primary, #f5f5f5);
+        margin: 0;
+        letter-spacing: -0.01em;
+    }
+
+    /* 3. Star Bar Interactive Container */
+    .rating-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius-md, 8px);
+        background-color: var(--bg-subtle, rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--border-light, #262626);
+        cursor: pointer;
+        outline: none;
+        transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease;
+
+        &:hover {
+            border-color: var(--border-hover, #404040);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--border-focus, #f59e0b);
+            outline-offset: 2px;
+        }
+    }
+
+    /* 4. Individual Star Slot */
+    .star-wrapper {
+        position: relative;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+
+        &:hover .star-svg {
+            transform: scale(1.1);
+        }
+    }
+
+    /* 5. Left/Right Half Hitboxes */
+    .hitbox {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        z-index: 2;
+        cursor: pointer;
+
+        &.left {
+            left: 0;
+        }
+
+        &.right {
+            right: 0;
+        }
+    }
+
+    /* 6. Star SVG Vectors */
+    .star-svg {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition:
+            transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+            stroke 0.15s ease,
+            fill 0.15s ease;
+    }
+}

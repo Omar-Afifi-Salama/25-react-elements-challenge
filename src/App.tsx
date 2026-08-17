@@ -7,6 +7,7 @@ import { OceanCanvas } from "./components/OceanCanvas.tsx";
 import { ShowcaseSection } from "./components/ShowcaseSection.tsx";
 
 import Accordion from "./components/01-Accordion.tsx";
+import ReviewStarMeter from "./components/02-ReviewStarMeter.tsx";
 
 interface FeatureItem {
     id: string;
@@ -15,16 +16,13 @@ interface FeatureItem {
 }
 
 interface ComponentSection {
-    heading: string;
     features: FeatureItem[];
 }
 
-type ComponentNames = "accordion";
+type ComponentNames = "accordion" | "ratingMeter";
 
-// TODO remove partial later
 const componentsData: Record<ComponentNames, ComponentSection> = {
     accordion: {
-        heading: "Key Features & Implementation Highlights",
         features: [
             {
                 id: "feature-dual-modes",
@@ -60,6 +58,45 @@ const componentsData: Record<ComponentNames, ComponentSection> = {
                 id: "feature-typescript",
                 title: "Strict TypeScript Architecture",
                 desc: "Strongly typed data schemas, props, and event handlers for predictable state transitions and reusability.",
+            },
+        ],
+    },
+    ratingMeter: {
+        features: [
+            {
+                id: "feature-dual-state-model",
+                title: "Dual-State Interaction Engine",
+                desc: "Decoupled hover preview and committed selection states that instantly revert on mouse exit without layout flickers.",
+            },
+            {
+                id: "feature-half-star-precision",
+                title: "Sub-Pixel Half-Star Geometry",
+                desc: "Bifurcated hitbox zones combined with SVG gradient fills to support precise 0.5-increment ratings.",
+            },
+            {
+                id: "feature-wai-aria-slider",
+                title: "WAI-ARIA Slider Semantics",
+                desc: 'Accessible role="slider" architecture equipped with aria-valuemin, aria-valuemax, aria-valuenow, and live text bindings.',
+            },
+            {
+                id: "feature-keyboard-control",
+                title: "Full Keyboard Navigation",
+                desc: "Intuitive step adjustments via ArrowLeft, ArrowRight, ArrowUp, and ArrowDown, with instant Home (0) and End (Max) snaps.",
+            },
+            {
+                id: "feature-svg-defs-dedup",
+                title: "Singleton SVG Defs Optimization",
+                desc: "Centralized gradient and filter definitions rendered once at root level to prevent duplicate DOM ID collisions.",
+            },
+            {
+                id: "feature-screen-reader-announcements",
+                title: "Live Region Screen Reader Feedback",
+                desc: "Integrated aria-live polite regions that announce updated scores to assistive technologies without disruptive focus shifts.",
+            },
+            {
+                id: "feature-typescript-strict",
+                title: "Type-Safe Prop Interfaces",
+                desc: "Strictly typed FillType variants, step intervals, and callback contracts ensuring robust parent-child component integration.",
             },
         ],
     },
@@ -123,27 +160,21 @@ function App() {
                         title="Interactive FAQ Accordion"
                         description="A robust, accessible accordion engineered with pure CSS grid transitions and standard keyboard controls."
                         features={componentsData["accordion"].features}
+                        verticalAlignment="start"
                         layout="split"
                     >
                         <Accordion />
                     </ShowcaseSection>
+
                     <ShowcaseSection
-                        badge="Accordion"
-                        title="Interactive FAQ Accordion"
-                        description="A robust, accessible accordion engineered with pure CSS grid transitions and standard keyboard controls."
+                        badge="Rating Meter"
+                        title="Interactive Star Rating & Review Meter"
+                        description="A precision-engineered, accessible star rating meter featuring sub-pixel half-star snapping, dual-state hover previews, and full WAI-ARIA slider keyboard controls."
                         features={componentsData["accordion"].features}
+                        verticalAlignment="center"
                         layout="split"
                     >
-                        <Accordion />
-                    </ShowcaseSection>
-                    <ShowcaseSection
-                        badge="Accordion"
-                        title="Interactive FAQ Accordion"
-                        description="A robust, accessible accordion engineered with pure CSS grid transitions and standard keyboard controls."
-                        features={componentsData["accordion"].features}
-                        layout="full-width"
-                    >
-                        <Accordion />
+                        <ReviewStarMeter />
                     </ShowcaseSection>
                 </div>
             </main>

@@ -8,11 +8,12 @@ export interface FeatureItem {
 }
 
 interface ShowcaseSectionProps {
-    badge: string;
+    badge?: string;
     title: string;
     description: string;
     features: FeatureItem[];
-    layout?: "split" | "full-width"; // Supports both styles
+    layout?: "split" | "full-width";
+    verticalAlignment?: "start" | "center";
     children: ReactNode;
 }
 
@@ -22,10 +23,13 @@ export function ShowcaseSection({
     description,
     features,
     layout = "split",
+    verticalAlignment = "start",
     children,
 }: ShowcaseSectionProps) {
     return (
-        <section className={`showcase-row layout-${layout}`}>
+        <section
+            className={`showcase-row layout-${layout} v-align-${verticalAlignment}`}
+        >
             {/* 1. Interactive Preview Area */}
             <div className="component-pane">
                 <div className="component-card">{children}</div>

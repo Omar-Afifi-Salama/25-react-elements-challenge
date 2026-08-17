@@ -65,12 +65,16 @@
             border-color: var(--border-hover);
         }
 
+        .heading-wrapper {
+            margin: 0;
+        }
+
         .header-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 0rem 1.1rem;
+            padding: 1.1rem 1.1rem;
             background: none;
             border: none;
             cursor: pointer;
@@ -107,7 +111,7 @@
                     color 0.15s ease;
 
                 &.open {
-                    transform: rotate(45deg);
+                    /* transform: rotate(45deg); */
                     color: var(--text-primary);
                 }
             }
@@ -129,7 +133,7 @@
 
         .content {
             margin: 0;
-            padding: 0 1.1rem 1.1rem 1.1rem;
+            padding: 0.4rem 1.1rem 1.1rem 1.1rem;
             color: var(--text-secondary);
             line-height: 1.6;
             font-size: 0.9rem;

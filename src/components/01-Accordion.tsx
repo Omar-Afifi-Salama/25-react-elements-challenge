@@ -1,5 +1,5 @@
 import { useRef, useState, type KeyboardEvent } from "react";
-import "../css/Accordion.css";
+import "../css/01-Accordion.css";
 
 interface ItemType {
     id: string;
@@ -164,7 +164,7 @@ export function AccordionItem({
                         className={`icon ${isSelected ? "open" : ""}`}
                         aria-hidden="true"
                     >
-                        +
+                        {isSelected ? "×" : "+"}
                     </span>
                 </button>
             </h3>

@@ -12,7 +12,6 @@
     flex-direction: column;
     gap: 2rem;
     width: 100%;
-    align-items: start;
 
     /* 🎯 Backplate for contrast & legibility */
     background-color: var(--bg-card);
@@ -24,10 +23,18 @@
         border-color 0.2s ease,
         background-color 0.2s ease;
 
-    /* Subtle border highlight on hover */
     &:hover {
         border-color: var(--border-hover);
     }
+}
+
+/* 🎯 Dynamic Vertical Alignment */
+.showcase-row.v-align-start {
+    align-items: start;
+}
+
+.showcase-row.v-align-center {
+    align-items: center;
 }
 
 .component-pane,
@@ -38,6 +45,7 @@
 .component-pane {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .details-pane {
@@ -133,7 +141,6 @@
     .showcase-row.layout-split {
         flex-direction: row;
         justify-content: space-between;
-        align-items: start;
         gap: 4rem;
         padding: 3rem 2.5rem;
 
@@ -158,16 +165,8 @@
     }
 
     .component-card {
-        /* width: 100%;
-        max-width: 100%;
-        background-color: var(--bg-card);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-md);
-        padding: 2rem;
-        box-shadow: var(--shadow-card); */
         width: 100%;
         max-width: 100%;
-        /* Remove nested card borders/backgrounds so we don't have double boxes */
         background: transparent;
         border: none;
         padding: 0;
