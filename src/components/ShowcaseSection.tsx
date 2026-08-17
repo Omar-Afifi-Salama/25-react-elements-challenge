@@ -28,7 +28,7 @@ export function ShowcaseSection({
     children,
 }: ShowcaseSectionProps) {
     const { elementRef, isVisible } = useScrollReveal({
-        threshold: 0.2,
+        threshold: 0.12,
         rootMargin: "-30px 0px",
         triggerOnce: false,
     });
