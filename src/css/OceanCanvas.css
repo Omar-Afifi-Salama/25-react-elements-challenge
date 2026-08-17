@@ -1,0 +1,10 @@
+.ocean-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--bg-page);
+    transition: background-color 0.2s ease;
+}

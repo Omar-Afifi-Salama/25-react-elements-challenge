@@ -1,0 +1,138 @@
+@scope (.accordion-root) {
+    :scope {
+        max-width: 550px;
+        margin-inline: auto;
+        padding: 0.5rem;
+        font-family: inherit;
+        color: var(--text-primary);
+    }
+
+    h2 {
+        text-align: center;
+        margin-block-end: 1rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .toggle-btn {
+        display: block;
+        margin-inline: auto;
+        padding: 8px 18px;
+        margin-block-end: 1.5rem;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-light);
+        background-color: var(--bg-card);
+        color: var(--text-primary);
+        transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease;
+
+        &:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--border-hover);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--border-focus);
+            outline-offset: 2px;
+        }
+
+        span {
+            font-weight: 600;
+        }
+
+        .on {
+            color: var(--success);
+        }
+
+        .off {
+            color: var(--danger);
+        }
+    }
+
+    .card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        margin-block-end: 0.6rem;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        transition: border-color 0.15s ease;
+
+        &:hover {
+            border-color: var(--border-hover);
+        }
+
+        .header-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0rem 1.1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            outline: none;
+            border-radius: var(--radius-md);
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: var(--bg-subtle);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--border-focus);
+                outline-offset: -2px;
+            }
+
+            h3,
+            span:first-child {
+                margin: 0;
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+
+            .icon {
+                font-size: 1.1rem;
+                line-height: 1;
+                display: inline-block;
+                padding-inline-start: 1rem;
+                color: var(--text-muted);
+                transition:
+                    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    color 0.15s ease;
+
+                &.open {
+                    transform: rotate(45deg);
+                    color: var(--text-primary);
+                }
+            }
+        }
+
+        .accordion-collapse {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &.open {
+                grid-template-rows: 1fr;
+            }
+
+            .accordion-body {
+                overflow: hidden;
+            }
+        }
+
+        .content {
+            margin: 0;
+            padding: 0 1.1rem 1.1rem 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+    }
+}
