@@ -184,3 +184,85 @@
         }
     }
 }
+
+/* --- Base Easing & Initial Hidden State --- */
+.showcase-row {
+    /* Ultra-smooth quintic deceleration */
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --base-duration: 650ms;
+
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity var(--base-duration) var(--ease-spring),
+        transform var(--base-duration) var(--ease-spring),
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    will-change: transform, opacity;
+}
+
+/* Card Container Entrance */
+.showcase-row.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Micro-Staggered Child Elements --- */
+.showcase-row .reveal-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 500ms var(--ease-spring),
+        transform 500ms var(--ease-spring);
+    will-change: transform, opacity;
+}
+
+/* When the parent is revealed, trigger child animations with stepped delays */
+.showcase-row.is-revealed {
+    .item-preview {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 80ms;
+    }
+
+    .item-badge {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 140ms;
+    }
+
+    .item-title {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 180ms;
+    }
+
+    .item-desc {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 220ms;
+    }
+
+    .item-heading {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 260ms;
+    }
+
+    /* List items stagger dynamically based on their index */
+    .feature-list li.reveal-item {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(300ms + var(--stagger-delay, 0ms));
+    }
+}
+
+/* --- Accessibility Safeguard --- */
+@media (prefers-reduced-motion: reduce) {
+    .showcase-row,
+    .showcase-row .reveal-item {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}

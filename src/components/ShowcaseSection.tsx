@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import "../css/ShowcaseSection.css";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export interface FeatureItem {
     id: string;
@@ -26,26 +27,45 @@ export function ShowcaseSection({
     verticalAlignment = "start",
     children,
 }: ShowcaseSectionProps) {
+    const { elementRef, isVisible } = useScrollReveal({
+        threshold: 0.2,
+        rootMargin: "-30px 0px",
+        triggerOnce: false,
+    });
+
     return (
         <section
-            className={`showcase-row layout-${layout} v-align-${verticalAlignment}`}
+            ref={elementRef}
+            className={`showcase-row layout-${layout} v-align-${verticalAlignment} ${isVisible ? "is-revealed" : "is-hidden"}`}
         >
             {/* 1. Interactive Preview Area */}
-            <div className="component-pane">
+            <div className="component-pane reveal-item item-preview">
                 <div className="component-card">{children}</div>
             </div>
 
             {/* 2. Text / Feature Details Area */}
             <div className="details-pane">
-                {badge && <span className="showcase-badge">{badge}</span>}
+                {badge && (
+                    <span className="showcase-badge reveal-item item-badge">
+                        {badge}
+                    </span>
+                )}
 
-                <h2>{title}</h2>
+                <h2 className="reveal-item item-title">{title}</h2>
                 <p className="description">{description}</p>
 
-                <h3>Key Highlights</h3>
+                <h3 className="reveal-item item-heading">Key Highlights</h3>
                 <ul className="feature-list">
-                    {features.map((feature) => (
-                        <li key={feature.id}>
+                    {features.map((feature, idx) => (
+                        <li
+                            key={feature.id}
+                            className="reveal-item"
+                            style={
+                                {
+                                    "--stagger-delay": `${idx * 45}ms`,
+                                } as React.CSSProperties
+                            }
+                        >
                             <strong>{feature.title}:</strong> {feature.desc}
                         </li>
                     ))}

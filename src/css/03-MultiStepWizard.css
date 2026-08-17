@@ -1,0 +1,255 @@
+@scope (.wizard-root) {
+    :scope {
+        width: 100%;
+        max-width: 480px;
+        margin-inline: auto;
+        font-family: inherit;
+        color: var(--text-primary);
+    }
+
+    /* 1. Step Navigation Indicators */
+    .stepper-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-block-end: 2rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background-color: var(--border-light);
+            z-index: 0;
+        }
+    }
+
+    .step-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--border-light);
+            background-color: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:disabled {
+                cursor: not-allowed;
+            }
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            display: none; /* Keep clean on small split panes */
+        }
+
+        &.active .step-circle {
+            border-color: var(--text-primary);
+            background-color: var(--text-primary);
+            color: var(--bg-page);
+        }
+
+        &.complete .step-circle {
+            border-color: var(--text-primary);
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+    }
+
+    @media (min-width: 450px) {
+        .step-item .step-label {
+            display: block;
+        }
+    }
+
+    /* 2. Card Content */
+    .wizard-card {
+        background-color: var(--bg-subtle);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md, 8px);
+        padding: 1.5rem;
+    }
+
+    .step-header {
+        margin-block-end: 1.5rem;
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 0.3rem 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+    }
+
+    /* 3. Form Grid */
+    .fields-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-block-end: 1.75rem;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .req-star {
+            color: var(--danger, #ef4444);
+            margin-inline-start: 2px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm, 6px);
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s ease;
+
+            &:focus {
+                border-color: var(--border-focus);
+            }
+        }
+    }
+
+    /* 4. Review Summary */
+    .review-summary {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-sm, 6px);
+        padding: 1rem;
+        margin-block-end: 1.75rem;
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding-block: 0.35rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.85rem;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            dt {
+                color: var(--text-muted);
+                text-transform: capitalize;
+            }
+
+            dd {
+                margin: 0;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+        }
+    }
+
+    /* 5. Navigation Controls */
+    .wizard-controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+
+        button {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm, 6px);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+
+            &:hover:not(:disabled) {
+                background-color: var(--bg-card-hover);
+            }
+
+            &:disabled {
+                opacity: 0.35;
+                cursor: not-allowed;
+            }
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-page);
+            border: 1px solid var(--text-primary);
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    /* 6. Success View */
+    .success-view {
+        text-align: center;
+        padding: 1.5rem 0.5rem;
+
+        .success-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--text-primary);
+            color: var(--bg-page);
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-block-end: 1.5rem;
+        }
+    }
+}
